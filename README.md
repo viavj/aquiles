@@ -3,6 +3,9 @@
 Canvas editor
 
 
+No third part libraries.
+
+
 LIVE checking on all parametres, with messages if some of them is incorrect or the opposite.
 
 
