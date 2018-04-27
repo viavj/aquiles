@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px;
+}
+
+.btn-container button {
+    background: green;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 15px;
+}
