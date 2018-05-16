@@ -3,6 +3,7 @@ import Form from '../components/Form';
 import * as identifiers from '../shared/identifiers';
 import * as standarts from '../shared/standarts';
 import * as msgTypes from '../shared/messageTypes';
+import * as aq from '../shared/aquiles';
 import './Layout.css';
 
 class Layout extends React.Component {
@@ -25,7 +26,7 @@ class Layout extends React.Component {
     }
 
     componentDidMount() {
-        this.state.forms.map(form => this.draw(form.id, this.filterCoords(form.coords, form.id)))
+        this.state.forms.map(form => aq.draw(form.id, this.filterCoords(form.coords, form.id)))
     }
 
 
@@ -38,24 +39,7 @@ class Layout extends React.Component {
                     validations: []
                 })
             }
-        }, () => console.log(this.state))
-    }
-
-    // if the code coincides with standards
-    compareToPathStandards = (coord) => {
-        return coord.indexOf(identifiers.LENGTH) >= 0 ?
-            coord.split(identifiers.LENGTH)[0]
-                &&
-                coord.split(identifiers.LENGTH)[0] <= standarts.MAX_DEGREE
-                &&
-                coord.split(identifiers.LENGTH)[0] >= standarts.MIN_DEGREE ?
-                coord.split(identifiers.LENGTH)[1] > 0
-                    &&
-                    coord.split(identifiers.LENGTH)[1] <= standarts.MAX_LENGTH ?
-                    true
-                    : false
-                : false
-            : false;
+        })
     }
 
     // if there are symbols after closing sign '#'
@@ -71,7 +55,7 @@ class Layout extends React.Component {
         coords.map(coord => {
             if (coord) totalLength += parseInt(coord.split(identifiers.LENGTH)[1])
         })
-        if (totalLength <= 1200) this.refs[id].changeState(msgTypes.MAX_LENGTH_MSG, true)
+        if (totalLength <= standarts.MAX_LENGTH) this.refs[id].changeState(msgTypes.MAX_LENGTH_MSG, true)
         else if(Number.isInteger(totalLength)) this.refs[id].changeState(msgTypes.MAX_LENGTH_MSG, false)
     }
 
@@ -99,7 +83,8 @@ class Layout extends React.Component {
             const filteredCoords = splitedCoords.filter((coord, index) => {
                 let isValid;
                 if (coord) {
-                    isValid = this.compareToPathStandards(coord);
+                    // if the code coincides with standards
+                    isValid = aq.compareToPathStandards(coord);
                     this.setState((prevState) => {
                         prevState.forms[id].validations[index] = { key: index, value: isValid }
                         return { forms: prevState.forms }
@@ -112,7 +97,6 @@ class Layout extends React.Component {
         }
         return [];
     }
-
 
     getCoords = (e) => {
         e.persist();
@@ -128,49 +112,9 @@ class Layout extends React.Component {
 
         }, () => {
             if (coords.length) {
-                this.draw(id, coords)
+                aq.draw(id, coords)
             }
         })
-
-    }
-
-
-    draw = (id, coords) => {
-
-        const canvas = document.querySelector(`[data-canvas-id='${id}']`);
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        let initialPoint = {
-            x: 150,
-            y: 150
-        }
-
-        let segment;
-
-        ctx.beginPath();
-
-        // draw all segments
-        coords.map(path => {
-
-                segment = {
-                    degrees: path.split(identifiers.LENGTH)[0],
-                    length: path.split(identifiers.LENGTH)[1]
-                }
-
-                ctx.moveTo(initialPoint.x, initialPoint.y);
-
-                let angle = segment.degrees * Math.PI / 180;
-                let _x = Math.cos(angle) * segment.length;
-                let _y = Math.sin(angle) * segment.length;
-                initialPoint.x += _x;
-                initialPoint.y += _y;
-
-                ctx.lineTo(initialPoint.x, initialPoint.y);
-
-        })
-
-        ctx.stroke();
     }
 
 

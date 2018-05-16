@@ -20,7 +20,7 @@ class Form extends React.Component {
             return {
                 [property]: { isValid: isValid, msg: prevState[property].msg }
             }
-        }, () => console.log(this.state))
+        })
     }
 
 
