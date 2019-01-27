@@ -1,19 +1,18 @@
 # aquiles
 
-Canvas editor
+<h1>Canvas editor
 
 
-No third part libraries.
+No third part libraries.</h1>
 
 
 LIVE checking on all parametres, with messages if some of them is incorrect or the opposite.
 
 
-
 Popups if Total Length of segments or degree is higher than allowed.
 
 
-
+--------------------------------------------------------------------------------------------------------------
 Especificaciones
 
 
