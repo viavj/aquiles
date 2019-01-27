@@ -27,13 +27,19 @@ Nuestro nuevo estándar para definición de barras de acero es bastante sencil
 El código tiene la siguiente estructura:
 
 
- La cadena AQW# como inicio.
+ <h1>La cadena AQW# como inicio.</h1>
  Una sucesión de segmentos descritos con su ángulo de giro inicial y su longitud:
  
  
- El símbolo @ precede al ángulo de la barra en grados sexagesimales y sin decimales.
- El símbolo L precede a la longitud del segmente en centímetros, también sin decimales.
- El símbolo # como final del código.
+ <b>El símbolo @ precede al ángulo de la barra en grados sexagesimales y sin decimales.</b>
+
+ 
+ 
+ <b>El símbolo L precede a la longitud del segmente en centímetros, también sin decimales.</b>
+
+ 
+ 
+ <b>El símbolo # como final del código.</b>
  
  
 El ángulo del primer segmento define la orientación del primer segmento, mientras que los
@@ -44,7 +50,7 @@ A continuación, se muestran algunos ejemplos con su visualización. El punto 
 
 
 
-Validaciones
+<h1>Validaciones</h1>
 
 
 Las validaciones serán una de las funcionalidades clave del producto final pero en esta primera fase sólo contemplaremos algunas básicas.
@@ -53,6 +59,10 @@ Las validaciones serán una de las funcionalidades clave del producto final per
 Las validaciones previstas son:
 
 
- #1 El código de la forma es correcto según el estándar definido.
- #2 La suma total de longitudes de los segmentos es menor a 12 metros.
- #3 Ningún ángulo es mayor de 165o ni menor de -165o.
+ <b>#1 El código de la forma es correcto según el estándar definido.</b>
+ 
+ 
+ <b>#2 La suma total de longitudes de los segmentos es menor a 12 metros.</b>
+ 
+ 
+ <b>#3 Ningún ángulo es mayor de 165o ni menor de -165o.</b>
